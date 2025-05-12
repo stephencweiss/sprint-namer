@@ -1,0 +1,21 @@
+{
+  "name": "sprint-namer",
+  "version": "1.0.0",
+  "description": "A tool for generating creative sprint names",
+  "main": "index.js",
+  "bin": {
+    "sprint-namer": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "sprint",
+    "name",
+    "generator",
+    "agile"
+  ],
+  "author": "",
+  "license": "ISC"
+}
