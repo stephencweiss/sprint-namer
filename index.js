@@ -39,9 +39,33 @@ function generateSprintName() {
   return `${randomAdjective} ${randomNoun}`;
 }
 
+function parseArguments() {
+  const args = process.argv.slice(2);
+  const options = { count: 1 };
+
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === '--count' || args[i] === '-c') {
+      const countValue = args[i + 1];
+      if (countValue && !isNaN(countValue)) {
+        options.count = parseInt(countValue, 10);
+        i++; // Skip the next argument since we've used it as the count value
+      } else {
+        console.error('Error: --count/-c requires a number value');
+        process.exit(1);
+      }
+    }
+  }
+
+  return options;
+}
+
 // When run directly
 if (require.main === module) {
-  console.log('Generated Sprint Name:', generateSprintName());
+  const options = parseArguments();
+
+  for (let i = 0; i < options.count; i++) {
+    console.log(`Sprint Name ${i + 1}: ${generateSprintName()}`);
+  }
 }
 
 module.exports = { generateSprintName };
