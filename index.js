@@ -27,16 +27,16 @@ const themes = {
     "Whirl", "Zephyr", "Echo", "Mirage", "Phantom", "Shadow", "Wisp"
   ],
   tvshows: [
-    "Friends", "Breaking Bad", "Game of Thrones", "The Office", "Stranger Things", "The Simpsons", "Seinfeld", "The Wire",
-    "Mad Men", "The Sopranos", "Lost", "The Walking Dead", "Parks and Recreation", "Modern Family", "Grey's Anatomy"
+    "Friends", "Breaking Bad", "Game of Thrones", "Office", "Stranger Things", "Simpsons", "Seinfeld", "Wire",
+    "Mad Men", "Sopranos", "Lost", "Walking Dead", "Parks and Recreation", "Modern Family", "Grey's Anatomy"
   ],
   movies: [
-    "Star Wars", "The Godfather", "Pulp Fiction", "The Matrix", "Forrest Gump", "Titanic", "Jurassic Park", "The Lion King",
-    "Avatar", "The Dark Knight", "Inception", "Fight Club", "Goodfellas", "The Shawshank Redemption", "Back to the Future"
+    "Star Wars", "Godfather", "Pulp Fiction", "Matrix", "Forrest Gump", "Titanic", "Jurassic Park", "Lion King",
+    "Avatar", "Dark Knight", "Inception", "Fight Club", "Goodfellas", "Shawshank Redemption", "Back to the Future"
   ],
   superheroes: [
     "Superman", "Batman", "Spider-Man", "Wonder Woman", "Iron Man", "Captain America", "Thor", "Black Widow",
-    "The Flash", "Green Lantern", "Aquaman", "Black Panther", "Doctor Strange", "Ant-Man", "Captain Marvel"
+    "Flash", "Green Lantern", "Aquaman", "Black Panther", "Doctor Strange", "Ant-Man", "Captain Marvel"
   ],
   space: [
     "Galaxy", "Nebula", "Pulsar", "Quasar", "Comet", "Asteroid", "Meteor", "Satellite",
@@ -72,17 +72,21 @@ const themes = {
  * Sprint Namer - A tool for generating creative sprint names
  */
 
-function generateSprintName(theme = 'animals') {
+function generateSprintName(theme = 'animals', includeAdjective = false) {
   const themeNouns = themes[theme] || themes.animals;
-  const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
   const randomNoun = themeNouns[Math.floor(Math.random() * themeNouns.length)];
 
-  return `${randomAdjective} ${randomNoun}`;
+  if (includeAdjective) {
+    const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+    return `${randomAdjective} ${randomNoun}`;
+  }
+
+  return randomNoun;
 }
 
 function parseArguments() {
   const args = process.argv.slice(2);
-  const options = { count: 1, theme: 'animals' };
+  const options = { count: 1, theme: 'animals', includeAdjective: false };
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--count' || args[i] === '-c') {
@@ -104,25 +108,30 @@ function parseArguments() {
         console.error(Object.keys(themes).join(', '));
         process.exit(1);
       }
-    } else if (args[i] === '--help' || args[i] === '-h') {
-      console.log('Sprint Namer - Generate creative sprint names');
-      console.log('');
-      console.log('Usage: node index.js [options]');
-      console.log('');
-      console.log('Options:');
-      console.log('  -c, --count <number>    Number of sprint names to generate (default: 1)');
-      console.log('  -t, --theme <theme>     Theme for sprint names (default: animals)');
-      console.log('  -h, --help             Show this help message');
-      console.log('');
-      console.log('Available themes:');
-      console.log('  ' + Object.keys(themes).join(', '));
-      console.log('');
-      console.log('Examples:');
-      console.log('  node index.js                    # Generate 1 animal-themed sprint name');
-      console.log('  node index.js -c 5               # Generate 5 animal-themed sprint names');
-      console.log('  node index.js -t superheroes     # Generate 1 superhero-themed sprint name');
-      console.log('  node index.js -c 3 -t movies     # Generate 3 movie-themed sprint names');
-      process.exit(0);
+          } else if (args[i] === '--adjective' || args[i] === '-a') {
+        options.includeAdjective = true;
+      } else if (args[i] === '--help' || args[i] === '-h') {
+        console.log('Sprint Namer - Generate creative sprint names');
+        console.log('');
+        console.log('Usage: node index.js [options]');
+        console.log('');
+        console.log('Options:');
+        console.log('  -c, --count <number>    Number of sprint names to generate (default: 1)');
+        console.log('  -t, --theme <theme>     Theme for sprint names (default: animals)');
+        console.log('  -a, --adjective        Include adjectives in sprint names (default: false)');
+        console.log('  -h, --help             Show this help message');
+        console.log('');
+        console.log('Available themes:');
+        console.log('  ' + Object.keys(themes).join(', '));
+        console.log('');
+        console.log('Examples:');
+        console.log('  node index.js                    # Generate 1 animal-themed sprint name');
+        console.log('  node index.js -c 5               # Generate 5 animal-themed sprint names');
+        console.log('  node index.js -t superheroes     # Generate 1 superhero-themed sprint name');
+        console.log('  node index.js -c 3 -t movies     # Generate 3 movie-themed sprint names');
+        console.log('  node index.js -a                 # Generate 1 animal-themed sprint name with adjective');
+        console.log('  node index.js -t coffee -a       # Generate 1 coffee-themed sprint name with adjective');
+        process.exit(0);
     }
   }
 
@@ -134,7 +143,7 @@ if (require.main === module) {
   const options = parseArguments();
 
   for (let i = 0; i < options.count; i++) {
-    console.log(`Sprint Name ${i + 1}: ${generateSprintName(options.theme)}`);
+    console.log(`Sprint Name ${i + 1}: ${generateSprintName(options.theme, options.includeAdjective)}`);
   }
 }
 
