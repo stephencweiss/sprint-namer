@@ -65,6 +65,20 @@ const themes = {
   snacks: [
     "Popcorn", "Chips", "Pretzels", "Nuts", "Crackers", "Cookies", "Candy", "Chocolate",
     "Gummies", "Jerky", "Trail Mix", "Granola", "Fruit Snacks", "Cheese Puffs", "Rice Cakes"
+  ],
+  nature: [
+    "Everest", "K2", "Kangchenjunga", "Lhotse", "Makalu", "Cho Oyu", "Dhaulagiri", "Manaslu",
+    "Nanga Parbat", "Annapurna", "Mount Fuji", "Mount Kilimanjaro", "Mount McKinley", "Mount Elbrus", "Mount Blanc",
+    "Mount Aconcagua", "Mount Denali", "Mount Logan", "Mount Ojos del Salado", "Mount Pissis", "Mount Bonete",
+    "Mount Tres Cruces", "Mount Llullaillaco", "Mount Mercedario", "Mount Huascaran", "Mount Yerupaja",
+    "Vesuvius", "Mount Etna", "Krakatoa", "Mount St. Helens", "Mauna Loa", "Kilauea", "Mount Bromo", "Mount Merapi",
+    "Mount Pinatubo", "Mount Tambora", "Congo Basin", "Daintree Rainforest", "Sherwood Forest", "Sequoia Forest",
+    "Amazon Jungle", "Congo Jungle", "Borneo Jungle", "Sumatra Jungle", "Papua New Guinea Jungle", "Madagascar Jungle",
+    "Mediterranean Sea", "Caribbean Sea", "Red Sea", "Black Sea", "Caspian Sea",
+    "Lake Superior", "Lake Victoria", "Lake Huron", "Lake Michigan", "Lake Tanganyika", "Lake Baikal", "Great Bear Lake",
+    "Lake Malawi", "Great Slave Lake", "Lake Erie", "Lake Winnipeg", "Lake Ontario", "Lake Ladoga", "Lake Balkhash",
+    "Coral Reef", "Great Barrier Reef", "Mangrove Forest", "Swamp", "Marsh", "Wetland", "Desert", "Sahara",
+    "Gobi Desert", "Mojave Desert", "Arctic Tundra", "Alpine Meadow", "Prairie", "Savanna", "Steppe"
   ]
 };
 
